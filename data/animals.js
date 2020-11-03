@@ -1,14 +1,14 @@
 module.exports = [
   {
     name: 'Marcus',
-    cool_factor: 3,
+    age: 3,
   },
   {
     name: 'Paco',
-    cool_factor: 4,
+    age: 4,
   },
   {
     name: 'Benjamin',
-    cool_factor: 10,
+    age: 10,
   }
 ];
