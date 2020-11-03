@@ -23,6 +23,7 @@ async function run() {
                     age INTEGER NOT NULL,
                     weight INTEGER NOT NULL,
                     good_boy BOOLEAN NOT NULL,
+                    img_src VARCHAR(512) NOT NULL,
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);
