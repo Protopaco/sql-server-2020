@@ -1,6 +1,6 @@
 const client = require('../lib/client');
 // import our seed data:
-const animals = require('./animals.js');
+const dogs = require('./dogs.js');
 const usersData = require('./users.js');
 const { getEmoji } = require('../lib/emoji.js');
 
@@ -25,12 +25,12 @@ async function run() {
     const user = users[0].rows[0];
 
     await Promise.all(
-      animals.map(animal => {
+      dogs.map(dog => {
         return client.query(`
-                    INSERT INTO animals (name, age, owner_id)
-                    VALUES ($1, $2, $3);
+                    INSERT INTO dogs (name, age, weight, good_boy, owner_id)
+                    VALUES ($1, $2, $3, $4, $5);
                 `,
-          [animal.name, animal.age, user.id]);
+          [dog.name, dog.age, dog.weight, dog.good_boy, user.id]);
       })
     );
 
