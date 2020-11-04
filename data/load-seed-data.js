@@ -33,9 +33,6 @@ async function run() {
                       RETURNING *;
                   `,
           [breed.name]);
-        console.log('------------------------------------');
-        console.log(`breed.name:  ${breed.name}`);
-        console.log('------------------------------------');
       })
     );
 
