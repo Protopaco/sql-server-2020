@@ -91,7 +91,7 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
-    test.only('tests dog .post, adds data object, checks that it was stored', async () => {
+    test('tests dog .post, adds data object, checks that it was stored', async () => {
 
       const newObject = {
         owner_id: 1,
@@ -114,8 +114,35 @@ describe('app routes', () => {
         .expect(200)
 
       expect(data.body.name).toEqual(newObject.name);
-      expect(returnedDog.body.name).toEqual("Old Yeller");
+      expect(returnedDog.body.name).toEqual(newObject.name);
 
+    })
+
+    test('tests dog .put, changes data object, checks that change was made', async () => {
+
+      const objectId = 1;
+      const objectChanges = {
+        name: 'Big Ole Marcus',
+        age: 25,
+        weight: 500,
+        good_boy: true,
+        img_src: 'asdfasd',
+        owner_id: 1
+      };
+
+      const data = await fakeRequest(app)
+        .put(`/dogs/${objectId}`)
+        .send(objectChanges)
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const returnedObject = await fakeRequest(app)
+        .get(`/dogs/${objectId}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      expect(data.body.name).toEqual(objectChanges.name);
+      expect(returnedObject.body.name).toEqual(objectChanges.name)
     })
 
   });
