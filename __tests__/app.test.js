@@ -145,6 +145,23 @@ describe('app routes', () => {
       expect(returnedObject.body.name).toEqual(objectChanges.name)
     })
 
+    test('tests dog .delete, deletes data object, verifies deletion', async () => {
+
+      const objectId = 2;
+
+      const data = await fakeRequest(app)
+        .delete(`/dogs/${objectId}`)
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const returnedObject = await fakeRequest(app)
+        .get(`/dogs/${objectId}`)
+        .expect(200)
+
+      expect(data.body.name).toEqual('Paco');
+      expect(returnedObject.body.length).toEqual(0)
+    })
+
   });
 
   afterAll(done => {
