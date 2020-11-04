@@ -28,11 +28,14 @@ async function run() {
     await Promise.all(
       breeds.map(breed => {
         return client.query(`
-                      INSERT INTO breed (name)
+                      INSERT INTO breeds (name)
                       VALUES ($1)
                       RETURNING *;
                   `,
           [breed.name]);
+        console.log('------------------------------------');
+        console.log(`breed.name:  ${breed.name}`);
+        console.log('------------------------------------');
       })
     );
 

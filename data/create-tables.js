@@ -17,7 +17,7 @@ async function run() {
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
                 );                       
-                CREATE TABLE breed (
+                CREATE TABLE breeds (
                   id SERIAL PRIMARY KEY NOT NULL,
                   name VARCHAR(256) NOT NULL
                 );
@@ -27,7 +27,7 @@ async function run() {
                     age INTEGER NOT NULL,
                     weight INTEGER NOT NULL,
                     good_boy BOOLEAN NOT NULL,
-                    breed_id INTEGER NOT NULL REFERENCES breed(id),
+                    breed_id INTEGER NOT NULL REFERENCES breeds(id),
                     img_src VARCHAR(512) NOT NULL,
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );

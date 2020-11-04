@@ -80,6 +80,7 @@ describe('app routes', () => {
         age: 6,
         weight: 11,
         good_boy: true,
+        breed_id: 2,
         img_src: 'https://wagspetadoption.org/wp-content/uploads/2018/12/48314211_2418978178173894_3787177238194028544_n.jpg'
 
       };
@@ -99,6 +100,7 @@ describe('app routes', () => {
         age: 4,
         weight: 45,
         good_boy: true,
+        breed_id: 3,
         img_src: 'asdfa'
       };
 
@@ -126,6 +128,7 @@ describe('app routes', () => {
         age: 25,
         weight: 500,
         good_boy: true,
+        breed_id: 2,
         img_src: 'asdfasd',
         owner_id: 1
       };
