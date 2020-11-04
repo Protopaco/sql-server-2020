@@ -27,9 +27,7 @@ describe('app routes', () => {
       return done();
     });
 
-    afterAll(done => {
-      return client.end(done);
-    });
+
 
     test('returns entire dogs array', async () => {
 
@@ -84,8 +82,7 @@ describe('app routes', () => {
         good_boy: true,
         img_src: 'https://wagspetadoption.org/wp-content/uploads/2018/12/48314211_2418978178173894_3787177238194028544_n.jpg'
 
-      }
-        ;
+      };
 
       const data = await fakeRequest(app)
         .get('/dogs/2')
@@ -94,7 +91,36 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
+    test.only('tests dog .post, adds data object, checks that it was stored', async () => {
+
+      const newObject = {
+        owner_id: 1,
+        name: "Old Yeller",
+        age: 4,
+        weight: 45,
+        good_boy: true,
+        img_src: 'asdfa'
+      };
+
+      const data = await fakeRequest(app)
+        .post('/dogs/')
+        .send(newObject)
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      const returnedDog = await fakeRequest(app)
+        .get('/dogs/4')
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      expect(data.body.name).toEqual(newObject.name);
+      expect(returnedDog.body.name).toEqual("Old Yeller");
+
+    })
+
   });
 
-
+  afterAll(done => {
+    return client.end(done);
+  });
 });
