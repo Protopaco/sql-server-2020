@@ -95,6 +95,31 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
+    test('returns all breed objects', async () => {
+
+      const expectation = [{
+        id: 1,
+        name: 'Terrier'
+      },
+      {
+        id: 2,
+        name: 'Chihuahua'
+      },
+      {
+        id: 3,
+        name: 'Dachshund'
+      },
+      ];
+
+      const data = await fakeRequest(app)
+        .get('/breeds/')
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      expect(data.body).toEqual(expectation);
+
+    })
+
     test('tests dog .post, adds data object, checks that it was stored', async () => {
 
       const newObject = {
