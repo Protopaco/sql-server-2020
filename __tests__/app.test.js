@@ -34,11 +34,12 @@ describe('app routes', () => {
       const expectation = [
         {
           id: 1,
-          owner_id: 1,
+          breed: "Terrier",
           name: 'Marcus',
           age: 6,
           weight: 25,
           good_boy: true,
+          owner_id: 1,
           img_src: 'https://i.pinimg.com/originals/09/bc/ba/09bcbac03c8723b106b1ae14de3027ed.jpg'
         },
         {
@@ -47,6 +48,7 @@ describe('app routes', () => {
           name: 'Paco',
           age: 6,
           weight: 11,
+          breed: "Chihuahua",
           good_boy: true,
           img_src: 'https://wagspetadoption.org/wp-content/uploads/2018/12/48314211_2418978178173894_3787177238194028544_n.jpg'
 
@@ -58,6 +60,7 @@ describe('app routes', () => {
           age: 10,
           weight: 10,
           good_boy: true,
+          breed: 'Dachshund',
           img_src: 'https://www.pdsa.org.uk/media/9895/gallery-2-dachshund-standing-outside.jpg'
 
         }
@@ -80,6 +83,7 @@ describe('app routes', () => {
         age: 6,
         weight: 11,
         good_boy: true,
+        breed: 'Chihuahua',
         img_src: 'https://wagspetadoption.org/wp-content/uploads/2018/12/48314211_2418978178173894_3787177238194028544_n.jpg'
 
       };
@@ -91,6 +95,31 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
+    test('returns all breed objects', async () => {
+
+      const expectation = [{
+        id: 1,
+        name: 'Terrier'
+      },
+      {
+        id: 2,
+        name: 'Chihuahua'
+      },
+      {
+        id: 3,
+        name: 'Dachshund'
+      },
+      ];
+
+      const data = await fakeRequest(app)
+        .get('/breeds/')
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      expect(data.body).toEqual(expectation);
+
+    })
+
     test('tests dog .post, adds data object, checks that it was stored', async () => {
 
       const newObject = {
@@ -99,6 +128,7 @@ describe('app routes', () => {
         age: 4,
         weight: 45,
         good_boy: true,
+        breed_id: 3,
         img_src: 'asdfa'
       };
 
@@ -126,6 +156,7 @@ describe('app routes', () => {
         age: 25,
         weight: 500,
         good_boy: true,
+        breed_id: 2,
         img_src: 'asdfasd',
         owner_id: 1
       };
