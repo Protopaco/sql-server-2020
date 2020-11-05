@@ -33,6 +33,17 @@ describe('app routes', () => {
 
       const expectation = [
         {
+          id: 3,
+          owner_id: 1,
+          name: 'Benjamin',
+          age: 10,
+          weight: 10,
+          good_boy: true,
+          breed: 'Dachshund',
+          img_src: 'https://www.pdsa.org.uk/media/9895/gallery-2-dachshund-standing-outside.jpg'
+
+        },
+        {
           id: 1,
           breed: "Terrier",
           name: 'Marcus',
@@ -52,18 +63,8 @@ describe('app routes', () => {
           good_boy: true,
           img_src: 'https://wagspetadoption.org/wp-content/uploads/2018/12/48314211_2418978178173894_3787177238194028544_n.jpg'
 
-        },
-        {
-          id: 3,
-          owner_id: 1,
-          name: 'Benjamin',
-          age: 10,
-          weight: 10,
-          good_boy: true,
-          breed: 'Dachshund',
-          img_src: 'https://www.pdsa.org.uk/media/9895/gallery-2-dachshund-standing-outside.jpg'
-
         }
+
       ];
 
       const data = await fakeRequest(app)
