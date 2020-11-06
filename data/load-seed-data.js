@@ -46,7 +46,6 @@ async function run() {
       })
     );
 
-
     console.log('seed data load complete', getEmoji(), getEmoji(), getEmoji());
   }
   catch (err) {
